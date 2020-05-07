@@ -1,7 +1,7 @@
-package modelo;
+package ups.edu.modelo;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 
 
@@ -12,19 +12,28 @@ public class Usuario implements Serializable {
 	private String nombre;
 	private String apellido;
 	private String correo;
-	private String contrasenia;
-	private Set<Telefono> telefonos;
+	private String pass;
+	private int activo;
+	private List<Telefono> telefonos;
 	
-	public Usuario(String cedula, String nombre, String apellido, String correo, String contrasenia,Set<Telefono> telefonos) {
+	
+	
+	
+	
+	
+	public Usuario() {
+		
+	}
+	public Usuario(String cedula, String nombre, String apellido, String correo, String pass, int activo,
+			List<Telefono> telefonos) {
+		
 		this.cedula = cedula;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.correo = correo;
-		this.contrasenia = contrasenia;
+		this.pass = pass;
+		this.activo = activo;
 		this.telefonos = telefonos;
-	}
-	public Usuario() {
-	
 	}
 	public String getCedula() {
 		return cedula;
@@ -50,23 +59,30 @@ public class Usuario implements Serializable {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-	public String getContrasenia() {
-		return contrasenia;
+	public String getPass() {
+		return pass;
 	}
-	public void setContrasenia(String contrasenia) {
-		this.contrasenia = contrasenia;
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
-	public Set<Telefono> getTelefonos() {
+	public int getActivo() {
+		return activo;
+	}
+	public void setActivo(int activo) {
+		this.activo = activo;
+	}
+	public List<Telefono> getTelefonos() {
 		return telefonos;
 	}
-	public void setTelefonos(Set<Telefono> telefonos) {
+	public void setTelefonos(List<Telefono> telefonos) {
 		this.telefonos = telefonos;
 	}
 	@Override
 	public String toString() {
 		return "Usuario [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo
-				+ ", contrasenia=" + contrasenia + "]";
+				+ ", pass=" + pass + ", activo=" + activo + ", telefonos=" + telefonos + "]";
 	}
+	
 	
 	
 }

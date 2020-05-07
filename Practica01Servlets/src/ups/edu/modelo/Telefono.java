@@ -1,32 +1,33 @@
-package modelo;
+package ups.edu.modelo;
 
 import java.io.Serializable;
+
 
 
 public class Telefono implements Serializable{
 
 	private static final long serialVersionUID=1L;
-	private int id_tel;
-	private String numero="";
-	private String tipo="";
-	private String operadora="";
-	private Usuario usuario;
+	private int id;
+    private String numero;
+    private String tipo;
+    private String operadora;
+    private Usuario usuario;
 	
 	public Telefono() {
 	
 	}
 	public Telefono(int id_tel, String numero, String tipo, String operadora, Usuario usuario) {
-		this.id_tel = id_tel;
+		this.id = id_tel;
 		this.numero = numero;
 		this.tipo = tipo;
 		this.operadora = operadora;
 		this.usuario = usuario;
 	}
-	public int getId_tel() {
-		return id_tel;
+	public int getId() {
+		return id;
 	}
-	public void setId_tel(int id_tel) {
-		this.id_tel = id_tel;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getNumero() {
 		return numero;
@@ -57,7 +58,7 @@ public class Telefono implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Telefono [id_tel=" + id_tel + ", numero=" + numero + ", tipo=" + tipo + ", operadora=" + operadora
+		return "Telefono [id=" + id + ", numero=" + numero + ", tipo=" + tipo + ", operadora=" + operadora
 				+ ", usuario=" + usuario + "]";
 	}
 	
