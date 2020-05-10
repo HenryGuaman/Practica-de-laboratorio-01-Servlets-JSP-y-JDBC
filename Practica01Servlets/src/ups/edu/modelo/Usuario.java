@@ -2,6 +2,8 @@ package ups.edu.modelo;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
+
 
 
 
@@ -24,8 +26,7 @@ public class Usuario implements Serializable {
 	public Usuario() {
 		
 	}
-	public Usuario(String cedula, String nombre, String apellido, String correo, String pass, int activo,
-			List<Telefono> telefonos) {
+	public Usuario(String cedula, String nombre, String apellido, String correo, String pass, int activo) {
 		
 		this.cedula = cedula;
 		this.nombre = nombre;
@@ -33,7 +34,6 @@ public class Usuario implements Serializable {
 		this.correo = correo;
 		this.pass = pass;
 		this.activo = activo;
-		this.telefonos = telefonos;
 	}
 	public String getCedula() {
 		return cedula;
@@ -76,6 +76,29 @@ public class Usuario implements Serializable {
 	}
 	public void setTelefonos(List<Telefono> telefonos) {
 		this.telefonos = telefonos;
+	}
+	
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		 if (this == obj) {
+	            return true;
+	        }
+	        if (obj == null) {
+	            return false;
+	        }
+	        if (getClass() != obj.getClass()) {
+	            return false;
+	        }
+	        final Usuario other = (Usuario) obj;
+	        if (!Objects.equals(this.correo, other.correo)) {
+	            return false;
+	        }
+	        if (!Objects.equals(this.pass, other.pass)) {
+	            return false;
+	        }
+	        return true;
 	}
 	@Override
 	public String toString() {

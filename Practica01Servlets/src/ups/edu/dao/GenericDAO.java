@@ -5,10 +5,7 @@
  */
 package ups.edu.dao;
 import java.util.List;
-/**
- *
- * @author
- */
+
 public interface GenericDAO<T, ID> {
 
     public void createTable();

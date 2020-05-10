@@ -48,7 +48,7 @@ public class JDBCTelefonoDAO extends JDBCGenericDAO<Telefono, Integer> implement
             if (rs != null && rs.next()) {
             	telefono = new Telefono(rs.getString("tel_numero"), rs.getString("tel_tipo"), rs.getString("tel_operadora"));
             	telefono.setId(rs.getInt("tel_id"));
-            	telefono.setUser(DAOFactory.getDAOFactory().getUsuarioDAO().findById(rs.getString("usu_cedula")));
+            	telefono.setUsuario(DAOFactory.getDAOFactory().getUsuarioDAO().findById(rs.getString("usu_cedula")));
             }
         } catch (SQLException e) {
             System.out.println(">>>WARNING (JDBCPhoneDAO:read): " + e.getMessage());
@@ -83,12 +83,11 @@ public class JDBCTelefonoDAO extends JDBCGenericDAO<Telefono, Integer> implement
             while (rs.next()) {
             	Telefono telefono = new Telefono(rs.getString("tel_numero"), rs.getString("tel_tipo"), rs.getString("tel_operadora"));
             	telefono.setId(rs.getInt("tel_id"));
-//phone.setUser(DAOFactory.getDAOFactory().getUserDAO().findById(cedula));
-                //System.out.println("Telegono usuario: "+cedula);
+
                 telefonos.add(telefono);
             }
         } catch (SQLException e) {
-            System.out.println(">>>WARNING (JDBCPhoneDAO:findByShoppingBasketId): " + e.getMessage());
+            System.out.println(">>>WARNING (JDBCTelefonoDAO:findByShoppingBasketId): " + e.getMessage());
         }
         return telefonos;
     }

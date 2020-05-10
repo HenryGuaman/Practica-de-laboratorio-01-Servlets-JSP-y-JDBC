@@ -5,20 +5,18 @@
  */
 package ups.edu.mysql.jdbc;
 
-import ec.edu.ups.dao.DAOFactory;
-import ec.edu.ups.dao.UserDAO;
-import ec.edu.ups.modelo.Phone;
-import ec.edu.ups.modelo.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author claum
- */
-public class JDBCUsuarioDAO extends JDBCGenericDAO<User, String> implements UserDAO {
+import ups.edu.dao.DAOFactory;
+import ups.edu.dao.UsuarioDAO;
+import ups.edu.modelo.Telefono;
+import ups.edu.modelo.Usuario;
+
+
+public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, String> implements UsuarioDAO {
 
     @Override
     public void createTable() {
@@ -34,18 +32,18 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<User, String> implements User
     }
 
     @Override
-    public boolean create(User user) {
+    public boolean create(Usuario user) {
         return conexionUno.update("INSERT INTO usuario VALUES ('" + user.getCedula() + "', '" + user.getNombre() + "', '" + user.getApellido() + "', '" + user.getCorreo() + "', '" + user.getPass() + "'," + user.getActivo() + ");");
     }
 
     @Override
-    public User findById(String cedula) {
-        User user = null;
+    public Usuario findById(String cedula) {
+    	Usuario user = null;
         ResultSet rs = conexionUno.query("SELECT * FROM usuario WHERE usu_cedula = '" + cedula + "';");
         try {
             if (rs != null && rs.next()) {
-                user = new User(rs.getString("usu_cedula"), rs.getString("usu_nombre"), rs.getString("usu_apellido"), rs.getNString("usu_correo"), rs.getNString("usu_pass"), rs.getInt("usu_activo"));
-                List<Phone> phones = DAOFactory.getDAOFactory().getPhoneDAO().findByUserId(user.getCedula());
+                user = new Usuario(rs.getString("usu_cedula"), rs.getString("usu_nombre"), rs.getString("usu_apellido"), rs.getNString("usu_correo"), rs.getNString("usu_pass"), rs.getInt("usu_activo"));
+                List<Telefono> phones = DAOFactory.getDAOFactory().getTelefonoDAO().findByUserId(user.getCedula());
                 user.setTelefonos(phones);
                 //System.out.println("Usuario buscado...."+user.getNombre());
             }
@@ -56,7 +54,7 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<User, String> implements User
     }
 
     @Override
-    public boolean update(User user) {
+    public boolean update(Usuario user) {
         return conexionUno.update("UPDATE usuario SET "
                 + "	usu_nombre = '" + user.getNombre() + "',"
                 + "	usu_apellido = '" + user.getApellido() + "',"
@@ -65,21 +63,21 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<User, String> implements User
     }
 
     @Override
-    public boolean delete(User user) {
+    public boolean delete(Usuario user) {
         return conexionUno.update("UPDATE usuario SET "
                 + "	usu_activo = " + user.getActivo()
                 + "	WHERE usu_cedula = '" + user.getCedula() + "';");
     }
 
     @Override
-    public List<User> find() {
-        List<User> users = new ArrayList<>();
+    public List<Usuario> find() {
+        List<Usuario> users = new ArrayList<>();
 
         ResultSet rs = conexionUno.query("SELECT * FROM usuario;");
         try {
             while (rs.next()) {
-                User user = new User(rs.getString("usu_cedula"), rs.getString("usu_nombre"), rs.getNString("usu_apellido"), rs.getNString("usu_correo"), rs.getNString("usu_pass"), rs.getInt("usu_activo"));
-                List<Phone> phones = DAOFactory.getDAOFactory().getPhoneDAO().findByUserId(user.getCedula());
+                Usuario user = new Usuario(rs.getString("usu_cedula"), rs.getString("usu_nombre"), rs.getNString("usu_apellido"), rs.getNString("usu_correo"), rs.getNString("usu_pass"), rs.getInt("usu_activo"));
+                List<Telefono> phones = DAOFactory.getDAOFactory().getTelefonoDAO().findByUserId(user.getCedula());
                 user.setTelefonos(phones);
                 users.add(user);
             }
@@ -90,14 +88,14 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<User, String> implements User
     }
 
     @Override
-    public User findUser(String correo, String pass) {
-        //System.out.println("Usuario: "+correo+" Pass: "+pass);
-        User user = null;
+    public Usuario findUser(String correo, String pass) {
+    	
+        Usuario user = null;
         ResultSet rs = conexionUno.query("SELECT * FROM usuario WHERE usu_correo = '" + correo + "' AND usu_pass = '" + pass + "';");
         try {
             if (rs != null && rs.next()) {
-                user = new User(rs.getString("usu_cedula"), rs.getString("usu_nombre"), rs.getNString("usu_apellido"), rs.getNString("usu_correo"), rs.getNString("usu_pass"), rs.getInt("usu_activo"));
-                List<Phone> phones = DAOFactory.getDAOFactory().getPhoneDAO().findByUserId(user.getCedula());
+                user = new Usuario(rs.getString("usu_cedula"), rs.getString("usu_nombre"), rs.getNString("usu_apellido"), rs.getNString("usu_correo"), rs.getNString("usu_pass"), rs.getInt("usu_activo"));
+                List<Telefono> phones = DAOFactory.getDAOFactory().getTelefonoDAO().findByUserId(user.getCedula());
                 user.setTelefonos(phones);
             }
         } catch (SQLException e) {
@@ -107,14 +105,14 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<User, String> implements User
     }
 
     @Override
-    public List<User> findByIdOrMail(String context) {
-        List<User> users = new ArrayList<>();
+    public List<Usuario> findByIdOrMail(String context) {
+        List<Usuario> users = new ArrayList<>();
         if (context.equals("all")) {
             ResultSet rs = conexionUno.query("SELECT * FROM usuario;");
             try {
                 if (rs != null && rs.next()) {
-                    User user = new User(rs.getString("usu_cedula"), rs.getString("usu_nombre"), rs.getString("usu_apellido"), rs.getString("usu_correo"), rs.getString("usu_pass"), rs.getInt("usu_activo"));
-                    List<Phone> phones = DAOFactory.getDAOFactory().getPhoneDAO().findByUserId(user.getCedula());
+                    Usuario user = new Usuario(rs.getString("usu_cedula"), rs.getString("usu_nombre"), rs.getString("usu_apellido"), rs.getString("usu_correo"), rs.getString("usu_pass"), rs.getInt("usu_activo"));
+                    List<Telefono> phones = DAOFactory.getDAOFactory().getTelefonoDAO().findByUserId(user.getCedula());
                     user.setTelefonos(phones);
                     users.add(user);
                 }
@@ -127,8 +125,8 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<User, String> implements User
                     + "WHERE usu_cedula = '" + context + "' OR usu_correo = '" + context + "';");
             try {
                 if (rs != null && rs.next()) {
-                    User user = new User(rs.getString("usu_cedula"), rs.getString("usu_nombre"), rs.getString("usu_apellido"), rs.getString("usu_correo"), rs.getString("usu_pass"), rs.getInt("usu_activo"));
-                    List<Phone> phones = DAOFactory.getDAOFactory().getPhoneDAO().findByUserId(user.getCedula());
+                    Usuario user = new Usuario(rs.getString("usu_cedula"), rs.getString("usu_nombre"), rs.getString("usu_apellido"), rs.getString("usu_correo"), rs.getString("usu_pass"), rs.getInt("usu_activo"));
+                    List<Telefono> phones = DAOFactory.getDAOFactory().getTelefonoDAO().findByUserId(user.getCedula());
                     user.setTelefonos(phones);
                     users.add(user);
                 }

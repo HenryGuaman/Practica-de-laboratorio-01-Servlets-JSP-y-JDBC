@@ -11,10 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- *
- * @author
- */
+
 public class ContextJDBC {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -41,7 +38,7 @@ public class ContextJDBC {
         }
     }
 
-    //Metdo para realizar una consulta.
+    //Metodo para realizar una consulta.
     public ResultSet query(String sql) {
         try {
             return this.statement.executeQuery(sql);

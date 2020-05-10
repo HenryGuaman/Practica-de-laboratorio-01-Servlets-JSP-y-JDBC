@@ -16,12 +16,10 @@ public class Telefono implements Serializable{
 	public Telefono() {
 	
 	}
-	public Telefono(int id_tel, String numero, String tipo, String operadora, Usuario usuario) {
-		this.id = id_tel;
+	public Telefono(String numero, String tipo, String operadora) {
 		this.numero = numero;
 		this.tipo = tipo;
 		this.operadora = operadora;
-		this.usuario = usuario;
 	}
 	public int getId() {
 		return id;

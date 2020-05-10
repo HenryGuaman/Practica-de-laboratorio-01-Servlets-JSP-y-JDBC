@@ -9,25 +9,22 @@ package ups.edu.dao;
 import ups.edu.mysql.jdbc.JDBCTelefonoDAO;
 import ups.edu.mysql.jdbc.JDBCUsuarioDAO;
 
-/**
- *
- * @author
- */
+
 public class JDBCDAOFactory extends DAOFactory{
 
     @Override
     public void createTables() {
-        this.getUserDAO().createTable();
-        this.getPhoneDAO().createTable();
+        this.getUsuarioDAO().createTable();
+        this.getTelefonoDAO().createTable();
     }
 
     @Override
-    public UsuarioDAO getUserDAO() {
+    public UsuarioDAO getUsuarioDAO() {
         return new JDBCUsuarioDAO();
     }
 
     @Override
-    public TelefonoDAO getPhoneDAO() {
+    public TelefonoDAO getTelefonoDAO() {
         return new JDBCTelefonoDAO();
     }
     
