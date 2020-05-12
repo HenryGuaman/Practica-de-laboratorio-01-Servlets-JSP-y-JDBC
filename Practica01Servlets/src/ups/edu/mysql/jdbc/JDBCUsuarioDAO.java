@@ -38,40 +38,39 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, String> implements U
 
     @Override
     public Usuario findById(String cedula) {
-    	Usuario user = null;
-        ResultSet rs = conexionUno.query("SELECT * FROM usuario WHERE usu_cedula = '" + cedula + "';");
+    	Usuario usuario = null;
+        ResultSet res = conexionUno.query("SELECT * FROM usuario WHERE usu_cedula = '" + cedula + "';");
         try {
-            if (rs != null && rs.next()) {
-                user = new Usuario(rs.getString("usu_cedula"), rs.getString("usu_nombre"), rs.getString("usu_apellido"), rs.getNString("usu_correo"), rs.getNString("usu_pass"), rs.getInt("usu_activo"));
-                List<Telefono> phones = DAOFactory.getDAOFactory().getTelefonoDAO().findByUserId(user.getCedula());
-                user.setTelefonos(phones);
-                //System.out.println("Usuario buscado...."+user.getNombre());
+            if (res != null && res.next()) {
+            	usuario = new Usuario(res.getString("usu_cedula"), res.getString("usu_nombre"), res.getString("usu_apellido"), res.getNString("usu_correo"), res.getNString("usu_pass"), res.getInt("usu_activo"));
+                List<Telefono> telefono = DAOFactory.getDAOFactory().getTelefonoDAO().findByUserId(usuario.getCedula());
+                usuario.setTelefonos(telefono);
             }
         } catch (SQLException e) {
             System.out.println(">>>WARNING (JDBCUserDAO:findById): " + e.getMessage());
         }
-        return user;
+        return usuario;
     }
 
     @Override
-    public boolean update(Usuario user) {
+    public boolean update(Usuario usuario) {
         return conexionUno.update("UPDATE usuario SET "
-                + "	usu_nombre = '" + user.getNombre() + "',"
-                + "	usu_apellido = '" + user.getApellido() + "',"
-                + "	usu_pass  = '" + user.getPass() + "'"
-                + "	WHERE usu_cedula = '" + user.getCedula() + "';");
+                + "	usu_nombre = '" + usuario.getNombre() + "',"
+                + "	usu_apellido = '" + usuario.getApellido() + "',"
+                + "	usu_pass  = '" + usuario.getPass() + "'"
+                + "	WHERE usu_cedula = '" + usuario.getCedula() + "';");
     }
 
     @Override
-    public boolean delete(Usuario user) {
+    public boolean delete(Usuario usuario) {
         return conexionUno.update("UPDATE usuario SET "
-                + "	usu_activo = " + user.getActivo()
-                + "	WHERE usu_cedula = '" + user.getCedula() + "';");
+                + "	usu_activo = " + usuario.getActivo()
+                + "	WHERE usu_cedula = '" + usuario.getCedula() + "';");
     }
 
     @Override
     public List<Usuario> find() {
-        List<Usuario> users = new ArrayList<>();
+        List<Usuario> usuario = new ArrayList<>();
 
         ResultSet rs = conexionUno.query("SELECT * FROM usuario;");
         try {
@@ -79,12 +78,12 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, String> implements U
                 Usuario user = new Usuario(rs.getString("usu_cedula"), rs.getString("usu_nombre"), rs.getNString("usu_apellido"), rs.getNString("usu_correo"), rs.getNString("usu_pass"), rs.getInt("usu_activo"));
                 List<Telefono> phones = DAOFactory.getDAOFactory().getTelefonoDAO().findByUserId(user.getCedula());
                 user.setTelefonos(phones);
-                users.add(user);
+                usuario.add(user);
             }
         } catch (SQLException e) {
             System.out.println(">>>WARNING (JDBCUserDAO:find): " + e.getMessage());
         }
-        return users;
+        return usuario;
     }
 
     @Override

@@ -14,10 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author 
- */
+
 public class JDBCTelefonoDAO extends JDBCGenericDAO<Telefono, Integer> implements TelefonoDAO {
     
     @Override
@@ -51,7 +48,7 @@ public class JDBCTelefonoDAO extends JDBCGenericDAO<Telefono, Integer> implement
             	telefono.setUsuario(DAOFactory.getDAOFactory().getUsuarioDAO().findById(rs.getString("usu_cedula")));
             }
         } catch (SQLException e) {
-            System.out.println(">>>WARNING (JDBCPhoneDAO:read): " + e.getMessage());
+            System.out.println(" (JDBCTelefonoDAO:read): " + e.getMessage());
         }
         return telefono;
     }
@@ -87,7 +84,7 @@ public class JDBCTelefonoDAO extends JDBCGenericDAO<Telefono, Integer> implement
                 telefonos.add(telefono);
             }
         } catch (SQLException e) {
-            System.out.println(">>>WARNING (JDBCTelefonoDAO:findByShoppingBasketId): " + e.getMessage());
+            System.out.println("(JDBCTelefonoDAO:findByShoppingBasketId): " + e.getMessage());
         }
         return telefonos;
     }

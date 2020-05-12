@@ -22,7 +22,12 @@ import ups.edu.modelo.Usuario;
 @WebServlet(name = "Registro", urlPatterns = {"/registro"})
 public class Registro extends HttpServlet {
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

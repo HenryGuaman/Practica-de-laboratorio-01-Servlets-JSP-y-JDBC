@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>BookContact</title>
+        <title>registros</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://kit.fontawesome.com/e564244708.js" crossorigin="anonymous"></script>
@@ -20,7 +20,7 @@
         <div class="ui container">
             <div class="ui secondary  menu">
                 <div class="item logo">
-                    <a href="/Practica-de-laboratorio-01"><h2>Book<span>Contacts</span></h2></a>
+                    <a href="/Practica-de-laboratorio-01"><h2>Contactos</h2></a>
                 </div>
 
                 <div class="right menu">
@@ -54,10 +54,9 @@
 
         <div class="layout-header">
             <div class="column-description">
-                <h1>Book<span>Contact</span></h1>
+                <h1>Guarda tus Contactos</span></h1>
                 <div>
-                    <p>Somos tu compañero de recuerdos.</p>
-                    <p>Guarda tus contactos de forma segura e ilimitada!</p>
+                    <p>Te gusta guardar tus contactos aqui lo puedes realizar</p>
                 </div>
                 <c:choose>
                     <c:when test="${userId == null}">
@@ -74,8 +73,7 @@
             </div>
         </div>
 
-
-        <div class="header-contet">
+		 <div class="header-contet">
             <div class=" header-description">
                 <h2>Por que elegirnos?</h2>
                 <p>Ofrecemos almacenamiento de contactos ilimitados para nuestros usuarios para conocer mas sobre nuestros planes empresariales visita los siguientes enlaces.
@@ -137,22 +135,15 @@
             </div>
         </div>
 
-
-
-        <footer>
+		<footer>
             <div class="icon_footer">
                 <i class="fas fa-chevron-up"></i>
             </div>
             <div class="social_foote">
-                <a href="https://www.instagram.com/claudio.mldo" target="_BLANK"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/Claudio.Mldo" target="_BLANK"><i class="fab fa-facebook-square"></i></a>
-                <a href="https://github.com/MClaudio" target="_BLANK"><i class="fab fa-github-square"></i></a>
+                <a href="https://www.facebook.com/henry.guaman.338" target="_BLANK"><i class="fab fa-facebook-square"></i></a>
+                <a href="https://github.com/henryguaman" target="_BLANK"><i class="fab fa-github-square"></i></a>
             </div>
-            <p>&COPY; 2020 Todos los derechos reservados | Designed By Henry Guaman</p>
+            <p>&COPY; 2020 Todos los derechos reservados | Realizado por Henry Guaman</p>
         </footer>
-
-        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/js/uikit.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/js/uikit-icons.min.js"></script>
     </body>
 </html>

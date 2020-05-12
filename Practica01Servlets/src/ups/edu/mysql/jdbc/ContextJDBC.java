@@ -15,7 +15,7 @@ import java.sql.Statement;
 public class ContextJDBC {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/db_bookcontact?serverTimezone=UTC";
+    private static final String URL = "jdbc:mysql://localhost:3306/practica?serverTimezone=UTC";
     private static final String USER = "root";
     private static final String PASS = "20CXRZgwzz17";
     private static ContextJDBC jdbc1 = null;
@@ -71,8 +71,7 @@ public class ContextJDBC {
     }
 
     protected static ContextJDBC getJDBC2() {
-        // creación de la conexión a la base de datos solo si no ha sido creada patrón
-        // de diseño singleton
+        
         if (jdbc2 == null) {
             jdbc2 = new ContextJDBC();
         }

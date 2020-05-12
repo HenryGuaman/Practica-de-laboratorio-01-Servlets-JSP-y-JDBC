@@ -6,7 +6,6 @@
 package ups.edu.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +23,12 @@ public class Busqueda extends HttpServlet {
 
     
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -44,7 +48,6 @@ public class Busqueda extends HttpServlet {
         
         request.setAttribute("users", usuario);
         getServletContext().getRequestDispatcher("/views/jsp/busqueda.jsp").forward(request, response);
-        //System.out.println("users: "+users.toString());
     }
 
     /**
