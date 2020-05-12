@@ -1,8 +1,3 @@
-<%-- 
-    Document   : my-agenda
-    Created on : 03-may-2020, 10:18:04
-    Author     : claum
---%>
 
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -15,158 +10,190 @@
         <script src="https://kit.fontawesome.com/e564244708.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="public/css/styles.css">
+        <link rel="stylesheet" href="estilos/css/styles.css">
+    	<!-- Site Icons -->
+	    <link rel="shortcut icon" href="#" type="image/x-icon" />
+	    <link rel="apple-touch-icon" href="#" />
+	
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="plantillas/css/bootstrap.min.css">
+	    <!-- Pogo Slider CSS -->
+	    <link rel="stylesheet" href="plantillas/css/pogo-slider.min.css">
+	    <!-- Site CSS -->
+	    <link rel="stylesheet" href="plantillas/css/style.css">
+	    <!-- Responsive CSS -->
+	    <link rel="stylesheet" href="plantillas/css/responsive.css">
+	    <!-- Custom CSS -->
+	    <link rel="stylesheet" href="plantillas/css/custom.css">
+	
+	    <!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	    <![endif]-->
     </head>
-    <body>
+    <body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
         <c:set var = "user" value = "${requestScope['user']}" />
-        <div class="ui container">
-            <div class="ui secondary  menu">
-                <div class="item logo">
-                    <a href="/Practica-de-laboratorio-01"><h2>Agenda Telefonica</span></h2></a>
-                </div>
-
-                <div class="right menu">
-                    <div class="item">
-                        <form action="busqueda">
+        
+        <header class="top-header">
+	        <nav class="navbar header-nav navbar-expand-lg">
+	            <div class="container-fluid">
+	            <li><a class="nav-link" href="">Mi Agenda Telefonica</a></li>
+	                <form action="busqueda">
                             <div class="ui left icon action input">
                                 <i class="users icon"></i>
                                 <input type="text" placeholder="Buscar..." name="usuario">
                                 <input type="submit" class="ui blue submit button" value="Buscar">
                             </div>
                         </form>
-                    </div>
-
-                    <div class="content-btns">
-                        <div class="item">
-                            <a href="my-agenda?logout=true" class="ui button">Cerrar Sesion</a> 
-                        </div>
-                        <button type="button" class="ui primary labeled icon button" data-toggle="modal" data-target="#modalInfo">
+	                <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
+	                    <ul class="navbar-nav">
+	                      
+	                        <a href="my-agenda?logout=true" class="ui button">Cerrar Sesion</a> 
+	                    </ul>
+	                    <button type="button" class="ui primary labeled icon button" data-toggle="modal" data-target="#modalInfo">
                             <i class="user icon"></i> Editar datos
                         </button>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-        <div class="ui container">
-
-            <div class="ui mt-5"> 
-
-                <c:choose>
-                    <c:when test="${user.telefonos.size() > 0}">
-                        <h1>Mis Telefonos</h1>
-
-                        <table class="ui compact celled definition table">
-                            <thead class="full-width">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Numero</th>
-                                    <th>Tipo</th>
-                                    <th>Operadora</th>
-                                    <th>Opciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <c:set var="i" value = "${0}"/>
-                                <c:forEach var="telefono" items="${user.telefonos}">
-                                    <c:set var="i" value = "${i+1}"/>
-                                    <tr>
-                                        <td>${i}</td> 
-                                        <td>${telefono.numero}</td>
-                                        <td>${telefono.tipo}</td>
-                                        <td>${telefono.operadora}</td>
-                                        <td>
-
-                                            <div class="modal fade" id="confirm-delete${i}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5>Eliminar numero.</h5>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>El número ${telefono.numero} se eliminara de tu agenda.</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                            <a href="editar-telefono?delete=true&idTelefono=${telefono.id}" class="btn btn-danger btn-ok">Eliminar</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="ui right floated small red labeled icon button" data-toggle="modal" data-target="#confirm-delete${i}" >
-                                                <i class="trash alternate icon"></i> Eliminar
-                                            </div>
-                                            <div class="ui right floated small green labeled icon button" data-toggle="modal" data-target="#exampleModalCenter${i}">
-                                                <i class="edit icon"></i> Editar
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <!-- Modal -->
-                                <div class="modal fade" id="exampleModalCenter${i}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalCenterTitle">Numero: ${telefono.numero}</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <form action="editar-telefono" method="POST">
-                                                <input type="hidden" name="idtel" value="${telefono.id}" >
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label for="numero">Numero</label>
-                                                        <input type="text" class="form-control" id="numero" name="numero" value="${telefono.numero}" required="" pattern="[0-9]+">
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-6">
-                                                            <label for="tipo">Tipo</label>
-                                                            <input type="text" class="form-control" id="tipo" name="tipo" required="" placeholder="Movil" value="${telefono.tipo}">
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label for="operadora">Operadora</label>
-                                                            <input type="text" class="form-control" id="operadora" name="operadora" required="" placeholder="Movistar" value="${telefono.operadora}">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                                    <button type="submit" class="btn btn-primary">Guardar</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </c:forEach>
-
-                            </tbody>
-                            <tfoot class="full-width">
-                                <tr>
-                                    <th></th>
-                                    <th colspan="4">
-
-                                        <button type="button" class="ui right floated small primary labeled icon button" data-toggle="modal" data-target="#exampleModalCenter">
-                                            <i class="phone icon"></i> Agregar telefono
-                                        </button>
-                                    </th>
-                                </tr>
-                            </tfoot>
-                        </table>
-
-                    </c:when>    
-                    <c:otherwise>
-                        <h2>No hay contactos aún agrega tu primer número.</h2>
-                        <button type="button" class="ui left floated small primary labeled icon button mt-3" data-toggle="modal" data-target="#exampleModalCenter">
-                            <i class="phone icon"></i> Agregar telefono
-                        </button>
-                    </c:otherwise>
-                </c:choose>
-            </div>
-        </div>
+	                </div>
+	                
+	            </div>
+	        </nav>
+	    </header>
+        
+        <!-- section -->
+		    <div class="section layout_padding">
+		        <div class="container">
+		            <div class="row">
+		
+		
+		                <div class="col-lg-10 offset-lg-1 margin-top_30">
+		                    <div class="full text_align_center">
+		                    	<div class="ui mt-5"> 
+					
+					                <c:choose>
+					                    <c:when test="${user.telefonos.size() > 0}">
+					                        <h1>Mis Telefonos</h1>
+					
+					                        <table class="ui compact celled definition table">
+					                            <thead class="full-width">
+					                                <tr>
+					                                    <th>#</th>
+					                                    <th>Numero</th>
+					                                    <th>Tipo</th>
+					                                    <th>Operadora</th>
+					                                    <th>Opciones</th>
+					                                </tr>
+					                            </thead>
+					                            <tbody>
+					
+					                                <c:set var="i" value = "${0}"/>
+					                                <c:forEach var="telefono" items="${user.telefonos}">
+					                                    <c:set var="i" value = "${i+1}"/>
+					                                    <tr>
+					                                        <td>${i}</td> 
+					                                        <td>${telefono.numero}</td>
+					                                        <td>${telefono.tipo}</td>
+					                                        <td>${telefono.operadora}</td>
+					                                        <td>
+					
+					                                            <div class="modal fade" id="confirm-delete${i}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					                                                <div class="modal-dialog">
+					                                                    <div class="modal-content">
+					                                                        <div class="modal-header">
+					                                                            <h5>Eliminar numero.</h5>
+					                                                        </div>
+					                                                        <div class="modal-body">
+					                                                            <p>El número ${telefono.numero} se eliminara de tu agenda.</p>
+					                                                        </div>
+					                                                        <div class="modal-footer">
+					                                                            <button type="button"  data-dismiss="modal">Cancelar</button>
+					                                                            <a href="editar-telefono?delete=true&idTelefono=${telefono.id}" >Eliminar</a>
+					                                                        </div>
+					                                                    </div>
+					                                                </div>
+					
+					                                            </div>
+					
+					                                            <div  data-toggle="modal" data-target="#confirm-delete${i}" >
+					                                                <i class="trash alternate icon"></i> Eliminar
+					                                            </div>
+					                                            <div  data-toggle="modal" data-target="#exampleModalCenter${i}">
+					                                                <i class="edit icon"></i> Editar
+					                                            </div>
+					                                        </td>
+					                                    </tr>
+					                                    <!-- Modal -->
+					                                <div class="modal fade" id="exampleModalCenter${i}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					                                    <div class="modal-dialog modal-dialog-centered" role="document">
+					                                        <div class="modal-content">
+					                                            <div class="modal-header">
+					                                                <h5 class="modal-title" id="exampleModalCenterTitle">Numero: ${telefono.numero}</h5>
+					                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					                                                    <span aria-hidden="true">&times;</span>
+					                                                </button>
+					                                            </div>
+					                                            <form action="editar-telefono" method="POST">
+					                                                <input type="hidden" name="idtel" value="${telefono.id}" >
+					                                                <div class="modal-body">
+					                                                    <div class="form-group">
+					                                                        <label for="numero">Numero</label>
+					                                                        <input type="text" class="form-control" id="numero" name="numero" value="${telefono.numero}" required="" pattern="[0-9]+">
+					                                                    </div>
+					                                                    <div class="form-row">
+					                                                        <div class="form-group col-md-6">
+					                                                            <label for="tipo">Tipo</label>
+					                                                            <input type="text" class="form-control" id="tipo" name="tipo" required="" placeholder="Movil" value="${telefono.tipo}">
+					                                                        </div>
+					                                                        <div class="form-group col-md-6">
+					                                                            <label for="operadora">Operadora</label>
+					                                                            <input type="text" class="form-control" id="operadora" name="operadora" required="" placeholder="Movistar" value="${telefono.operadora}">
+					                                                        </div>
+					                                                    </div>
+					                                                </div>
+					                                                <div class="modal-footer">
+					                                                    <button type="button"  data-dismiss="modal">Cerrar</button>
+					                                                    <button type="submit" >Guardar</button>
+					                                                </div>
+					                                            </form>
+					                                        </div>
+					                                    </div>
+					                                </div>
+					                            </c:forEach>
+					
+					                            </tbody>
+					                            <tfoot class="full-width">
+					                                <tr>
+					                                    <th></th>
+					                                    <th colspan="4">
+					
+					                                        <button type="button" data-toggle="modal" data-target="#exampleModalCenter">
+					                                            <i class="phone icon"></i> Agregar telefono
+					                                        </button>
+					                                    </th>
+					                                </tr>
+					                            </tfoot>
+					                        </table>
+					
+					                    </c:when>    
+					                    <c:otherwise>
+					                        <h2>No hay contactos aún agrega tu primer número.</h2>
+					                        <button type="button"  data-toggle="modal" data-target="#exampleModalCenter">
+					                            <i class="phone icon"></i> Agregar telefono
+					                        </button>
+					                    </c:otherwise>
+					                </c:choose>
+					            </div>
+		                    
+		                    </div>
+		                </div>
+		
+		            </div>
+		        </div>
+		    </div>
+		    <!-- end section -->
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -182,22 +209,22 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="numero">Numero</label>
-                                <input type="text" class="form-control" id="numero" name="numero" required="" placeholder="0985632146" pattern="[0-9]+">
+                                <input type="text" class="form-control" id="numero" name="numero" required="" placeholder="0987654321" pattern="[0-9]+">
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="tipo">Tipo</label>
-                                    <input type="text" class="form-control" id="tipo" name="tipo" required="" placeholder="Movil">
+                                    <input type="text" class="form-control" id="tipo" name="tipo" required="" placeholder="Casa">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="operadora">Operadora</label>
-                                    <input type="text" class="form-control" id="operadora" name="operadora" required="" placeholder="Movistar">
+                                    <input type="text" class="form-control" id="operadora" name="operadora" required="" placeholder="Sin Nombre">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="button"  data-dismiss="modal">Cerrar</button>
+                            <button type="submit" >Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -249,20 +276,39 @@
                 </div>
             </div>
         </div>
-
-        <footer>
-            <div class="icon_footer">
-                <i class="fas fa-chevron-up"></i>
+				  <!-- Start Footer -->
+    <footer class="footer-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="logo">
+                        
+                    </div>
+                </div>
+                <div class="col-lg-12 white_fonts">
+                    <h4 class="text-align">Contactanos</h4>
+                </div>
+                
+            
             </div>
-            <div class="social_foote">
-                <a href="https://www.facebook.com/henry.guaman.338" target="_BLANK"><i class="fab fa-facebook-square"></i></a>
-                <a href="https://github.com/henryguaman" target="_BLANK"><i class="fab fa-github-square"></i></a>
+            <div class="row white_fonts margin-top_30">
+                <div class="col-lg-12">
+                    <div class="full">
+                        <div class="center">
+                            <ul class="social_icon">
+                                <li><a href="href="https://www.facebook.com/henry.guaman.338" target="_BLANK""><i class="fa fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <p>&COPY; 2020 Todos los derechos reservados | Realizado por Henry Guaman</p>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p>&COPY; 2020 Todos los derechos reservados | Realizado por Henry Guaman</p>
-        </footer>
-
-
-
+        </div>
+    </footer>
+    <!-- End Footer -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

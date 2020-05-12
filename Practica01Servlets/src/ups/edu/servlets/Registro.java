@@ -39,7 +39,7 @@ public class Registro extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/html/form-register.html");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/html/pagina-registro.html");
         dispatcher.forward(request, response);
     }
 

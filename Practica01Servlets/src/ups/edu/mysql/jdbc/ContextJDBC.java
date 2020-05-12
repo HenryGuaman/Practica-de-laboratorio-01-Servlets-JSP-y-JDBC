@@ -32,9 +32,9 @@ public class ContextJDBC {
             Connection connection = DriverManager.getConnection(URL, USER, PASS);
             this.statement = connection.createStatement();
         } catch (ClassNotFoundException e) {
-            System.out.println(">>>WARNING (JDBC:connect)...problemas con el driver\n" + e.getMessage());
+            System.out.println(" (JDBC:connect)...problemas con el driver\n" + e.getMessage());
         } catch (SQLException e) {
-            System.out.println(">>>WARNING (JDBC:connect)...problemas con la BD\n" + e.getMessage());
+            System.out.println("WARNING (JDBC:connect)...problemas con la BD\n" + e.getMessage());
         }
     }
 
@@ -43,7 +43,7 @@ public class ContextJDBC {
         try {
             return this.statement.executeQuery(sql);
         } catch (SQLException e) {
-            System.out.println(">>>WARNING (JDBC:query): ---" + sql + "---" + e);
+            System.out.println("WARNING (JDBC:query): ---" + sql + "---" + e);
         }
         return null;
     }
@@ -54,15 +54,14 @@ public class ContextJDBC {
             this.statement.executeUpdate(sql);
             return true;
         } catch (SQLException e) {
-            System.out.println(">>>WARNING (JDBC:update)... actualizacion: ---" + sql + "---" + e);
+            System.out.println("WARNING (JDBC:update)... actualizacion: ---" + sql + "---" + e);
             return false;
         }
     }
 
     //Metodos para retornar las conexiones
     protected static ContextJDBC getJDBC1() {
-        // creación de la conexión a la base de datos solo si no ha sido creada patrón
-        // de diseño singleton
+       
         if (jdbc1 == null) {
             jdbc1 = new ContextJDBC();
         }
