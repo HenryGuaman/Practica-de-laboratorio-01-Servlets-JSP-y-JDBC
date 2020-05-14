@@ -37,10 +37,10 @@
         <header class="top-header">
 	        <nav class="navbar header-nav navbar-expand-lg">
 	            <div class="container-fluid">
-	            <li><a class="nav-link" href="">Mi Agenda Telefonica</a></li>
+	            <li><a class="nav-link" href="/Practica01Servlets">Mi Agenda Telefonica</a></li>
 	                <form action="busqueda">
                             <div class="ui left icon action input">
-                                <i class="users icon"></i>
+                                <i ></i>
                                 <input type="text" placeholder="Buscar..." name="usuario">
                                 <input type="submit" class="ui blue submit button" value="Buscar">
                             </div>
@@ -55,7 +55,7 @@
 	                        <a href="my-agenda?logout=true" class="ui button">Cerrar Sesion</a> 
 	                    </ul>
 	                    <button type="button" class="ui primary labeled icon button" data-toggle="modal" data-target="#modalInfo">
-                            <i class="user icon"></i> Editar datos
+                            <i class="user icon"></i> Editar mis datos
                         </button>
 	                </div>
 	                
@@ -75,12 +75,12 @@
 					
 					                <c:choose>
 					                    <c:when test="${user.telefonos.size() > 0}">
-					                        <h1>Mis Telefonos</h1>
+					                        <h1>Telefonos Agregados</h1>
 					
 					                        <table class="ui compact celled definition table">
 					                            <thead class="full-width">
 					                                <tr>
-					                                    <th>#</th>
+					                                    <th>Id</th>
 					                                    <th>Numero</th>
 					                                    <th>Tipo</th>
 					                                    <th>Operadora</th>
@@ -118,10 +118,10 @@
 					                                            </div>
 					
 					                                            <div  data-toggle="modal" data-target="#confirm-delete${i}" >
-					                                                <i class="trash alternate icon"></i> Eliminar
+					                                                <i ></i> Eliminar
 					                                            </div>
 					                                            <div  data-toggle="modal" data-target="#exampleModalCenter${i}">
-					                                                <i class="edit icon"></i> Editar
+					                                                <i ></i> Editar
 					                                            </div>
 					                                        </td>
 					                                    </tr>
@@ -170,7 +170,7 @@
 					                                    <th colspan="4">
 					
 					                                        <button type="button" data-toggle="modal" data-target="#exampleModalCenter">
-					                                            <i class="phone icon"></i> Agregar telefono
+					                                            <i ></i> Agregar telefono
 					                                        </button>
 					                                    </th>
 					                                </tr>
@@ -269,8 +269,8 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="button"  data-dismiss="modal">Cerrar</button>
+                            <button type="submit" >Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -296,7 +296,7 @@
                     <div class="full">
                         <div class="center">
                             <ul class="social_icon">
-                                <li><a href="href="https://www.facebook.com/henry.guaman.338" target="_BLANK""><i class="fa fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.facebook.com/henry.guaman.338" target="_BLANK""><i class="fa fa-facebook-f"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                                 <li><a href="#"><i class="fa fa-google-plus"></i></a></li>

@@ -23,7 +23,7 @@ import ups.edu.dao.TelefonoDAO;
 import ups.edu.dao.UsuarioDAO;
 
 
-@WebFilter(filterName = "HomeFilter", urlPatterns = {"/Practica-de-laboratorio-01"}, dispatcherTypes = {DispatcherType.REQUEST})
+@WebFilter(filterName = "HomeFilter", urlPatterns = {"/Practica01Servlets"}, dispatcherTypes = {DispatcherType.REQUEST})
 public class HomeFilter implements Filter {
     
     private static final boolean debug = true;
@@ -53,16 +53,10 @@ public class HomeFilter implements Filter {
         TelefonoDAO phoneDao = DAOFactory.getDAOFactory().getTelefonoDAO();
         phoneDao.createTable();
         System.err.println("Filtro en homefilter");
-        //chain.doFilter(request, response);
+        
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-        //res.sendRedirect("/Practica-de-laboratorio-01");
         
-        //req.setAttribute("userId", req.getSession().getAttribute("userID"));
-        //RequestDispatcher dispatcher = req.getRequestDispatcher("/index.js");
-        //dispatcher.forward(req, res);
-        //RequestDispatcher despachador= request.getRequestDispatcher("/scopes.jsp");
-        //despachador.forward(request, response);
         
     
         

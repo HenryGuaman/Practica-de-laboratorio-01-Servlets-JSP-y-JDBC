@@ -42,7 +42,7 @@ public class MyAgenda extends HttpServlet {
         if (sesion != null) {
             if (sesion.equals("true")) {
                 request.getSession().invalidate();
-                response.sendRedirect("/Practica-de-laboratorio-01");
+                response.sendRedirect("/Practica01Servlets");
 
             }
         } else {

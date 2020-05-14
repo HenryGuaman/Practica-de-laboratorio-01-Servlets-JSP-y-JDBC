@@ -17,12 +17,7 @@ public class Usuario implements Serializable {
 	private String pass;
 	private int activo;
 	private List<Telefono> telefonos;
-	
-	
-	
-	
-	
-	
+
 	public Usuario() {
 		
 	}

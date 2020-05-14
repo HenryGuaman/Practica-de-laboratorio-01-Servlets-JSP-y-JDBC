@@ -39,12 +39,12 @@
         <header class="top-header">
 	        <nav class="navbar header-nav navbar-expand-lg">
 	            <div class="container-fluid">
-	            <li><a class="nav-link" href="">Mi Agenda Telefonica</a></li>
+	            <li><a class="nav-link" href="/Practica01Servlets">Mi Agenda Telefonica</a></li>
 	                <form action="busqueda">
                             <div class="ui left icon action input">
                                 <i class="users icon"></i>
                                 <input type="text" placeholder="Buscar..." name="usuario">
-                                <input type="submit" class="ui blue submit button" value="Buscar">
+                                <input type="submit"  value="Buscar">
                             </div>
                      </form>
 	                <span></span>
@@ -64,7 +64,7 @@
                         </c:when>    
                         <c:otherwise>
                             <div class="item">
-                                <a href="my-agenda" class="ui primary button">Mi perfil</a>
+                                <a href="my-agenda" class="ui primary button">Mi Cuenta</a>
                             </div>
                         </c:otherwise>
                     </c:choose>
@@ -87,9 +87,10 @@
 						                    <table class="table table-hover">
 						                        <thead>
 						                            <tr>
-						                                <th scope="col">Contactos</th>
+						                                <th scope="col">Usuario</th>
 						                                <th scope="col">Correo</th>
 						                                <th scope="col">Numero de telefono</th>
+						                                <th scope="col">Cedula</th>
 						                            </tr>
 						                        </thead>
 						                        <tbody>
@@ -109,6 +110,7 @@
 						                                    </td>
 						                                    <td>${user.correo}</td>
 						                                    <td>${user.telefonos[0].numero}</td>
+						                                    <td>${user.cedula}</td>
 						                                </tr>
 						
 						                            <div class="modal fade" id="exampleModal${i}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -119,15 +121,14 @@
 						                                                <img class="ui avatar image" src="plantillas/images/fondoper.jpg">
 						                                            </div>
 						                                            <div class="content">
-						                                                <a class="header">${user.nombre} ${user.apellido}</a>
 						                                                <div class="meta">
-						                                                   <i class="envelope icon"></i> <a href="mailto:${user.correo}"> ${user.correo}</a>
+						                                                   <i ></i> <a href="mailto:${user.correo}"> ${user.correo}</a>
 						                                                </div>
 						                                                <div class="description">
 						                                                    <c:choose>
 						                                                        <c:when test="${user.telefonos.size() > 0}">
 						                                                            <c:forEach var="telefono" items="${user.telefonos}">
-						                                                                <p><i class="phone icon"></i> <a href="tel:${telefono.numero}">${telefono.numero}</a>  &#9679; ${telefono.tipo} &#9679; ${telefono.operadora}</p>
+						                                                                <p><i ></i> <a href="tel:${telefono.numero}">${telefono.numero}</a>  &#9679; ${telefono.tipo} &#9679; ${telefono.operadora}</p>
 						                                                            </c:forEach>
 						                                                        </c:when>    
 						                                                        <c:otherwise>
